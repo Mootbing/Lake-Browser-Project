@@ -9,20 +9,20 @@ struct Nigel: View {
         NavigationView {
             ZStack {
                 // Background gradient
-                LinearGradient(gradient: Gradient(colors: [.black, .gray]), startPoint: .top, endPoint: .bottom)
+                LinearGradient(gradient: Gradient(colors: [.red, .purple]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
                 
                 // Main content
                 VStack(spacing: 20) {
                     // Tabs, Downloads, Settings, etc.
-                    VStack(alignment: .leading, spacing: 15) {
+                    VStack(alignment: .leading, spacing: 25) {
                         ForEach(options, id: \.self) { option in
                             Text(option)
-                                .font(.title)
-                                .fontWeight(selectedOption == option ? .bold : .regular)
+                                .font(.system(size: 25))
+                                .fontWeight(.bold)
                                 .foregroundColor(.white)
-                                .scaleEffect(selectedOption == option ? 1.25 : 0.75)
-                                .opacity(selectedOption == option ? 0.5 : 0.25)
+                                .scaleEffect(selectedOption == option ? 1.25 : 0.8)
+                                .opacity(selectedOption == option ? 0.75 : 0.25)
                                 .padding(.leading, selectedOption == option ? 20 : 0)
                                 .onTapGesture {
                                     withAnimation(.spring()) {
