@@ -13,6 +13,10 @@ struct Nigel: View {
                 LinearGradient(gradient: Gradient(colors: [.red, .purple]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
                 
+                LinearGradient(gradient: Gradient(colors: [.black, .black]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.75)
+                
                 // Main content
                 VStack(spacing: 20) {
                     // Tabs, Downloads, Settings, etc.
@@ -38,18 +42,21 @@ struct Nigel: View {
                                         }
                                     }
                                 HStack(spacing: 20) {
-                                    if selectedOptions.contains(option) {
-                                        HStack {
+//                                    if selectedOptions.contains(option) {
+                                        HStack(spacing: 20) {
                                             ForEach(additionalTexts, id: \.self) { text in
                                                 Text(text)
                                                     .foregroundColor(.white)
                                                     .padding()
+//                                                    .scaleEffect(selectedOptions.contains(option) ? 1 : 0)
+                                                    .opacity(selectedOptions.contains(option) ? 1 : -0.4)
+                                                    .padding(.bottom, selectedOptions.contains(option) ? 0 : -60)
+                                                    .offset(y: selectedOptions.contains(option) ? 0 : -50)
+                                                    .animation(.easeOut(duration: 0.5), value: selectedOptions.contains(option))
                                             }
                                         }
-                                        .scaleEffect(1.2)
-                                        .transition(.slide)
-                                        .animation(.spring(), value: selectedOptions)
-                                    }
+
+//                                    }
                                 }
                             }
                         }
