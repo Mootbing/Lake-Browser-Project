@@ -24,10 +24,10 @@ struct Nigel: View {
                         ForEach(options, id: \.self) { option in
                             VStack(alignment: .leading) {
                                 Text(option)
-                                    .font(.system(size: 25))
+                                    .font(.system(size: 35))
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
-                                    .scaleEffect(selectedOptions.contains(option) ? 1.5 : 1)
+                                    .scaleEffect(selectedOptions.contains(option) ? 1.2 : 1)
                                     .opacity(selectedOptions.contains(option) ? 0.75 : 0.25)
                                     .padding(.leading, selectedOptions.contains(option) ? 20 : 0)
                                     .padding(.top, selectedOptions.contains(option) ? 10 : 0)
@@ -42,26 +42,33 @@ struct Nigel: View {
                                         }
                                     }
                                 HStack(spacing: 20) {
-//                                    if selectedOptions.contains(option) {
+                                    ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 20) {
                                             ForEach(additionalTexts, id: \.self) { text in
                                                 Text(text)
                                                     .foregroundColor(.white)
-                                                    .padding()
-//                                                    .scaleEffect(selectedOptions.contains(option) ? 1 : 0)
-                                                    .opacity(selectedOptions.contains(option) ? 1 : -0.4)
-                                                    .padding(.bottom, selectedOptions.contains(option) ? 0 : -60)
-                                                    .offset(y: selectedOptions.contains(option) ? 0 : -50)
-                                                    .animation(.easeOut(duration: 0.5), value: selectedOptions.contains(option))
+                                                    .padding(25)
+                                                    .offset(x: selectedOptions.contains(option) ? 0 : 500)
+                                                    .font(.system(size: 12))
                                             }
                                         }
-
-//                                    }
+                                  }
+                                    .background(Color.white.opacity(0.05))
+                                    .cornerRadius(20)
+                                    .opacity(selectedOptions.contains(option) ? 1 : -1)
+                                    .padding(.bottom, selectedOptions.contains(option) ? 0 : -60)
+                                    .offset(y: selectedOptions.contains(option) ? 0 : -50)
+                                    .animation(.easeOut(duration: 0.5), value: selectedOptions.contains(option))
+//                                    .scaleEffect(selectedOptions.contains(option) ? 1 : 0)
                                 }
                             }
                         }
                     }
                 }
+                .padding(.leading, 50)
+                .padding(.trailing, 50)
+                
+//                GlassMorphicSearchBar()
             }
         }
     }
