@@ -24,7 +24,7 @@ struct Nigel: View {
                         ForEach(options, id: \.self) { option in
                             VStack(alignment: .leading) {
                                 Text(option)
-                                    .font(.system(size: 35))
+                                    .font(.system(size: 30))
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
                                     .scaleEffect(selectedOptions.contains(option) ? 1.2 : 1)
@@ -45,21 +45,29 @@ struct Nigel: View {
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 20) {
                                             ForEach(additionalTexts, id: \.self) { text in
-                                                Text(text)
-                                                    .foregroundColor(.white)
-                                                    .padding(25)
-                                                    .offset(x: selectedOptions.contains(option) ? 0 : 500)
-                                                    .font(.system(size: 12))
+                                                VStack() {
+                                                    
+                                                    Text(text)
+                                                        .foregroundColor(.white)
+                                                        .padding(20)
+                                                        .padding(.trailing, 0)
+                                                        .offset(x: selectedOptions.contains(option) ? 0 : 500)
+                                                        .font(.system(size: 12))
+                                                }
                                             }
                                         }
                                   }
                                     .background(Color.white.opacity(0.05))
+                                    
                                     .cornerRadius(20)
                                     .opacity(selectedOptions.contains(option) ? 1 : -1)
                                     .padding(.bottom, selectedOptions.contains(option) ? 0 : -60)
                                     .offset(y: selectedOptions.contains(option) ? 0 : -50)
                                     .animation(.easeOut(duration: 0.5), value: selectedOptions.contains(option))
-//                                    .scaleEffect(selectedOptions.contains(option) ? 1 : 0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(Color.white.opacity(0.08), lineWidth: selectedOptions.contains(option) ? 1 : 0)
+                                    )
                                 }
                             }
                         }
