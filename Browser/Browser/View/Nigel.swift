@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct Nigel: View {
-    @State private var selectedOption: String = "Tabs"
-    
+    @State private var selectedOptions: Set<String> = []
+
     let options = ["Tabs", "Downloads", "Settings", "Bookmarks", "Favorites", "History", "Actions"]
     
     var body: some View {
@@ -15,18 +15,24 @@ struct Nigel: View {
                 // Main content
                 VStack(spacing: 20) {
                     // Tabs, Downloads, Settings, etc.
-                    VStack(alignment: .leading, spacing: 25) {
+                    VStack(alignment: .leading, spacing: 15) {
                         ForEach(options, id: \.self) { option in
                             Text(option)
-                                .font(.system(size: 25))
+                                .font(.system(size: 35))
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
-                                .scaleEffect(selectedOption == option ? 1.25 : 0.8)
-                                .opacity(selectedOption == option ? 0.75 : 0.25)
-                                .padding(.leading, selectedOption == option ? 20 : 0)
+                                .scaleEffect(selectedOptions.contains(option) ? 1.5 : 1)
+                                .opacity(selectedOptions.contains(option) ? 0.75 : 0.25)
+                                .padding(.leading, selectedOptions.contains(option) ? 20 : 0)
+                                .padding(.top, selectedOptions.contains(option) ? 10 : 0)
+                                .padding(.bottom, selectedOptions.contains(option) ? 10 : 0)
                                 .onTapGesture {
                                     withAnimation(.spring()) {
-                                        self.selectedOption = option
+                                        if selectedOptions.contains(option) {
+                                            selectedOptions.remove(option)
+                                        } else {
+                                            selectedOptions.insert(option)
+                                        }
                                     }
                                 }
                         }
