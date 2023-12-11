@@ -7,7 +7,7 @@ struct GlassMorphicSearchBar: View {
         ZStack {
             // Background with glass morphism effect
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white.opacity(0.05))
+                .fill(Color.white.opacity(0.25))
 //                .background(
 //                    VisualEffectView(effect: UIBlurEffect(style: .dark))
 //                )

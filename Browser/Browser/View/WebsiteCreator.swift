@@ -58,55 +58,65 @@ struct WebsiteCreator: View
     
     
     //BROWSER VIEW
-    var body: some View
-    {
-        ZStack
-        {
-            VStack(spacing: 0)
-            {
-                
-                HStack
-                {
-                    TextField("Search or enter address", text: $message).textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        .autocapitalization(.none)
-                        .keyboardType(.URL)
-                        .onSubmit
-                        {
-                            //message = validator.fixURL(urlString: message)
-                            self.viewModel.valuePublisher.send(message)
-                        }
-                    
-                    Button(action: {self.viewModel.valuePublisher.send(self.message)})
-                    {
-                        Text("GO")
-                            .padding(.trailing, 10)
-                            .padding(.leading, 10)
-                            .padding(.top, 4)
-                            .padding(.bottom, 4)
-                            .overlay (RoundedRectangle(cornerRadius: 4, style: .circular)
-                                     .stroke(Color.gray, lineWidth: 0.5))
-                    }
-                }.padding()
-                
-                WebView(url: .publicUrl, viewModel: viewModel)
-                             .overlay (RoundedRectangle(cornerRadius: 4, style: .circular)
-                             .stroke(Color.gray, lineWidth: 1.8))
-                             .padding(.leading, 1).padding(.trailing, 1)
-                
-                webViewNavigationBar
-            }
-            .onReceive(self.viewModel.showLoader.receive(on: RunLoop.main))
-            { value in
-                self.showLoader = value
-            }
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            WebView(url: .publicUrl, viewModel: viewModel)
 
-            if showLoader
-            {
-                LoadingView()
-            }
+            GlassMorphicSearchBar()
+                .padding(.leading, 20).padding(.trailing, 20)
+                .padding(.bottom, 0) // Positioning 100px from the bottom
+            
+            HomeView()
         }
     }
+//        ZStack
+//        {
+//            VStack(spacing: 0)
+//            {
+                
+//                HStack
+//                {
+//                    TextField("Search or enter address", text: $message).textFieldStyle(RoundedBorderTextFieldStyle())
+//                        
+//                        .autocapitalization(.none)
+//                        .keyboardType(.URL)
+//                        .onSubmit
+//                        {
+//                            //message = validator.fixURL(urlString: message)
+//                            self.viewModel.valuePublisher.send(message)
+//                        }
+//                    
+//                    Button(action: {self.viewModel.valuePublisher.send(self.message)})
+//                    {
+//                        Text("GO")
+//                            .padding(.trailing, 10)
+//                            .padding(.leading, 10)
+//                            .padding(.top, 4)
+//                            .padding(.bottom, 4)
+//                            .overlay (RoundedRectangle(cornerRadius: 4, style: .circular)
+//                                     .stroke(Color.gray, lineWidth: 0.5))
+//                    }
+//                }.padding()
+                
+//                WebView(url: .publicUrl, viewModel: viewModel)
+//                             .overlay (RoundedRectangle(cornerRadius: 4, style: .circular)
+//                             .stroke(Color.gray, lineWidth: 1.8))
+//                             .padding(.leading, 1).padding(.trailing, 1)
+//                
+////                webViewNavigationBar
+//                GlassMorphicSearchBar()
+//            }
+//            .onReceive(self.viewModel.showLoader.receive(on: RunLoop.main))
+//            { value in
+//                self.showLoader = value
+//            }
+//
+//            if showLoader
+//            {
+//                LoadingView()
+//            }
+////        }
+//    }
     
     
 }
