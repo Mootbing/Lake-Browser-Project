@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GlassMorphicSearchBar: View {
-    @State private var searchText = "YOUTUBE"
+    @State private var searchText = "HTTPS://YOUTUBE.COM"
 
     var body: some View {
         ZStack {
@@ -26,14 +26,14 @@ struct GlassMorphicSearchBar: View {
                         .fontWeight(.bold)
                         .kerning(2)
                         .foregroundColor(.white)
-                    Text(".COM")
-                        .font(.system(size: 8))
-                        .kerning(2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .opacity(0.5)
-                        .padding(.leading, -7)
-                        .padding(.top, 4)
+//                    Text(".COM")
+//                        .font(.system(size: 8))
+//                        .kerning(2)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .opacity(0.5)
+//                        .padding(.leading, -7)
+//                        .padding(.top, 4)
                 }
                 
 //                Spacer() // Pushes all elements to the sides

@@ -18,6 +18,7 @@
 		214929F5298C453C0011184E /* WebsiteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214929F4298C453C0011184E /* WebsiteCreator.swift */; };
 		68A809E62B1A2D0D0018BD31 /* BrowserBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */; };
 		68DA11082B222926009E3C15 /* Nigel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11072B222926009E3C15 /* Nigel.swift */; };
+		68DA110A2B278AFE009E3C15 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11092B278AFE009E3C15 /* InformationRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		214929F4298C453C0011184E /* WebsiteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteCreator.swift; sourceTree = "<group>"; };
 		68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserBar.swift; sourceTree = "<group>"; };
 		68DA11072B222926009E3C15 /* Nigel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nigel.swift; sourceTree = "<group>"; };
+		68DA11092B278AFE009E3C15 /* InformationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				214929F4298C453C0011184E /* WebsiteCreator.swift */,
 				214929EE298C34D90011184E /* WebView.swift */,
 				68DA11072B222926009E3C15 /* Nigel.swift */,
+				68DA11092B278AFE009E3C15 /* InformationRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				214929F1298C35230011184E /* ViewModel.swift in Sources */,
 				214929E1298C336B0011184E /* ContentView.swift in Sources */,
 				214929F3298C35500011184E /* URLValidator.swift in Sources */,
+				68DA110A2B278AFE009E3C15 /* InformationRow.swift in Sources */,
 				214929EF298C34D90011184E /* WebView.swift in Sources */,
 				68A809E62B1A2D0D0018BD31 /* BrowserBar.swift in Sources */,
 				214929DF298C336B0011184E /* BrowserApp.swift in Sources */,

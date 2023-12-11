@@ -18,7 +18,6 @@ struct Nigel: View {
                     .opacity(0.75)
                 
                 // Main content
-            
                 VStack(spacing: 20) {
                     // Tabs, Downloads, Settings, etc.
                     ScrollView() {
