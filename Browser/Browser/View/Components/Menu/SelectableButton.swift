@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SelectableButton: View {
-    var title = "";
+    var name = "";
     var icon = "xmark"
     @State var selected = false;
     
@@ -15,7 +15,7 @@ struct SelectableButton: View {
             .background(Color.white.opacity(0.05))
             .clipShape(Circle())
         
-        Text(title)
+        Text(name)
             .foregroundColor(.white)
             .opacity(0.75)
             .fontWeight(.semibold)

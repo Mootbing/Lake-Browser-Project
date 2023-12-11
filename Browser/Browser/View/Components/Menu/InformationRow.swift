@@ -26,7 +26,10 @@ struct InformationRow: View {
                     HStack(spacing: 20) {
                         ForEach(buttons, id: \.self) { text in
                             VStack() {
-                                SelectableButton()
+                                SelectableButton(
+                                    name: text,
+                                    icon: "xmark"
+                                )
                             }
                                 .padding(.leading, 30)
                                 .padding(.top, 30)

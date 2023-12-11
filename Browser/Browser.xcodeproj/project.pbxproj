@@ -17,7 +17,7 @@
 		214929F3298C35500011184E /* URLValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214929F2298C35500011184E /* URLValidator.swift */; };
 		214929F5298C453C0011184E /* WebsiteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214929F4298C453C0011184E /* WebsiteCreator.swift */; };
 		68A809E62B1A2D0D0018BD31 /* BrowserBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */; };
-		68DA11082B222926009E3C15 /* Nigel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11072B222926009E3C15 /* Nigel.swift */; };
+		68DA11082B222926009E3C15 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11072B222926009E3C15 /* HomeView.swift */; };
 		68DA110A2B278AFE009E3C15 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11092B278AFE009E3C15 /* InformationRow.swift */; };
 		68DA110C2B278F66009E3C15 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA110B2B278F66009E3C15 /* SelectableButton.swift */; };
 /* End PBXBuildFile section */
@@ -34,7 +34,7 @@
 		214929F2298C35500011184E /* URLValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLValidator.swift; sourceTree = "<group>"; };
 		214929F4298C453C0011184E /* WebsiteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteCreator.swift; sourceTree = "<group>"; };
 		68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserBar.swift; sourceTree = "<group>"; };
-		68DA11072B222926009E3C15 /* Nigel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nigel.swift; sourceTree = "<group>"; };
+		68DA11072B222926009E3C15 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		68DA11092B278AFE009E3C15 /* InformationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRow.swift; sourceTree = "<group>"; };
 		68DA110B2B278F66009E3C15 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,14 +90,11 @@
 		214929F6298C52540011184E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				68A809E42B1A2CF30018BD31 /* New */,
+				68A809E42B1A2CF30018BD31 /* Components */,
 				214929EC298C34690011184E /* LoadingView.swift */,
 				214929E0298C336B0011184E /* ContentView.swift */,
 				214929F4298C453C0011184E /* WebsiteCreator.swift */,
 				214929EE298C34D90011184E /* WebView.swift */,
-				68DA11072B222926009E3C15 /* Nigel.swift */,
-				68DA11092B278AFE009E3C15 /* InformationRow.swift */,
-				68DA110B2B278F66009E3C15 /* SelectableButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -118,12 +115,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		68A809E42B1A2CF30018BD31 /* New */ = {
+		68A809E42B1A2CF30018BD31 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				68DA110E2B2791AA009E3C15 /* Menu */,
+				68DA110D2B27919B009E3C15 /* SearchBar */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		68DA110D2B27919B009E3C15 /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
 				68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */,
 			);
-			path = New;
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		68DA110E2B2791AA009E3C15 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				68DA11072B222926009E3C15 /* HomeView.swift */,
+				68DA11092B278AFE009E3C15 /* InformationRow.swift */,
+				68DA110B2B278F66009E3C15 /* SelectableButton.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +221,7 @@
 				214929DF298C336B0011184E /* BrowserApp.swift in Sources */,
 				214929ED298C34690011184E /* LoadingView.swift in Sources */,
 				68DA110C2B278F66009E3C15 /* SelectableButton.swift in Sources */,
-				68DA11082B222926009E3C15 /* Nigel.swift in Sources */,
+				68DA11082B222926009E3C15 /* HomeView.swift in Sources */,
 				214929F5298C453C0011184E /* WebsiteCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
