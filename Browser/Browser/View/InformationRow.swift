@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct InformationRow: View {
-    let title = "";
-    let buttons = {};
+    var title = "";
+    var buttons = ["asdf"];
     @State var selected = false;
 
     var body: some View {
@@ -18,9 +18,7 @@ struct InformationRow: View {
                 .padding(.bottom, selected ? 10 : 0)
                 .onTapGesture {
                     withAnimation(.spring()) {
-                        if selected {
-                            selected = false
-                        }
+                        selected = !selected
                     }
                 }
             HStack(spacing: 20) {
@@ -28,30 +26,12 @@ struct InformationRow: View {
                     HStack(spacing: 20) {
                         ForEach(buttons, id: \.self) { text in
                             VStack() {
-                                Button(action: {}) {
-                                    Image(systemName: "xmark")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 12))
-                                }
-                                    .frame(width: 32, height: 32) // Adjust to your Figma design
-                                    .background(Color.white.opacity(0.05))
-                                    .clipShape(Circle())
-                                
-                                Text(text)
-                                    .foregroundColor(.white)
-                                    .opacity(0.75)
-                                    .fontWeight(.semibold)
-                                    .padding(.top, 3)
-                                    .kerning(1)
-                                    .font(.system(size: 12))
+                                SelectableButton()
                             }
                                 .padding(.leading, 30)
-    //                                                        .padding(.trailing, 30)
                                 .padding(.top, 30)
                                 .padding(.bottom, 30)
-    //                                                        .offset(x: selected ? 0 : 0)
                                 .opacity(selected ? 1 : -3)
-    //                                                        .offset(y: selected ? 0 : 20)
                         }
                     }
                 }

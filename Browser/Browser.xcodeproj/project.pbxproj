@@ -19,6 +19,7 @@
 		68A809E62B1A2D0D0018BD31 /* BrowserBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */; };
 		68DA11082B222926009E3C15 /* Nigel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11072B222926009E3C15 /* Nigel.swift */; };
 		68DA110A2B278AFE009E3C15 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11092B278AFE009E3C15 /* InformationRow.swift */; };
+		68DA110C2B278F66009E3C15 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA110B2B278F66009E3C15 /* SelectableButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		68A809E52B1A2D0D0018BD31 /* BrowserBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserBar.swift; sourceTree = "<group>"; };
 		68DA11072B222926009E3C15 /* Nigel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nigel.swift; sourceTree = "<group>"; };
 		68DA11092B278AFE009E3C15 /* InformationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRow.swift; sourceTree = "<group>"; };
+		68DA110B2B278F66009E3C15 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				214929EE298C34D90011184E /* WebView.swift */,
 				68DA11072B222926009E3C15 /* Nigel.swift */,
 				68DA11092B278AFE009E3C15 /* InformationRow.swift */,
+				68DA110B2B278F66009E3C15 /* SelectableButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				68A809E62B1A2D0D0018BD31 /* BrowserBar.swift in Sources */,
 				214929DF298C336B0011184E /* BrowserApp.swift in Sources */,
 				214929ED298C34690011184E /* LoadingView.swift in Sources */,
+				68DA110C2B278F66009E3C15 /* SelectableButton.swift in Sources */,
 				68DA11082B222926009E3C15 /* Nigel.swift in Sources */,
 				214929F5298C453C0011184E /* WebsiteCreator.swift in Sources */,
 			);
