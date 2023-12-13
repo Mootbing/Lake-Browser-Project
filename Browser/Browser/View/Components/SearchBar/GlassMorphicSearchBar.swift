@@ -2,12 +2,23 @@ import SwiftUI
 
 struct GlassMorphicSearchBar: View {
     @State private var searchText = "HTTPS://YOUTUBE.COM"
+    
+    // Define a callback function type
+    typealias CallbackFunction = () -> Void
+
+    // Variable to store the callback function
+    private var onClick: CallbackFunction
+
+    // Initialize the class with the callback function
+    init(onClick: @escaping CallbackFunction) {
+        self.onClick = onClick;
+    }
 
     var body: some View {
         ZStack {
             // Background with glass morphism effect
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white.opacity(0.25))
+                .fill(Color.white.opacity(0.05))
 //                .background(
 //                    VisualEffectView(effect: UIBlurEffect(style: .dark))
 //                )
@@ -87,6 +98,10 @@ struct VisualEffectView: UIViewRepresentable {
 
 struct GlassMorphicSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        GlassMorphicSearchBar()
+        GlassMorphicSearchBar(
+            onClick: {
+                
+            }
+        )
     }
 }

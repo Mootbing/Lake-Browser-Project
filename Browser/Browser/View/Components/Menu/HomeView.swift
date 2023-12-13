@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     let options = ["Tabs", "Downloads", "Settings", "Bookmarks", "Favorites", "History", "Actions"]
-    let additionalTexts = ["Option 1", "Option 2", "Option 3"] // Example additional texts
+    let additionalTexts = ["Option 1", "Option 2", "Option 3", "Option 4", "Scuff"] // Example additional texts
 
     var body: some View {
         NavigationView {
@@ -30,7 +30,11 @@ struct HomeView: View {
                     }
                     .frame(maxHeight: .infinity)
                     
-                    GlassMorphicSearchBar()
+                    GlassMorphicSearchBar(
+                        onClick: {
+                            
+                        }
+                    )
                 }
                     .padding(.leading, 35)
                     .padding(.trailing, 35)

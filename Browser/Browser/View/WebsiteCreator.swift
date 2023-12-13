@@ -8,6 +8,8 @@ struct WebsiteCreator: View
     @State var webTitle = ""
     @State var validator = URLValidator(urlString: "")
     
+    @State var showHomePage = false;
+    
     var group = Group
     {
         Spacer()
@@ -62,11 +64,17 @@ struct WebsiteCreator: View
         ZStack(alignment: .bottom) {
             WebView(url: .publicUrl, viewModel: viewModel)
 
-            GlassMorphicSearchBar()
+            GlassMorphicSearchBar(
+                onClick: {
+                    showHomePage = true
+                }
+            )
                 .padding(.leading, 20).padding(.trailing, 20)
                 .padding(.bottom, 0) // Positioning 100px from the bottom
             
-            HomeView()
+            if showHomePage {
+                HomeView()
+            }
         }
     }
 //        ZStack
