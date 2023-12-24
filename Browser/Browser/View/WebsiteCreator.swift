@@ -8,7 +8,7 @@ struct WebsiteCreator: View
     @State var webTitle = ""
     @State var validator = URLValidator(urlString: "")
     
-    @State var showHomePage = false;
+    @State var showHomePage = true;
     
     var group = Group
     {
@@ -63,10 +63,11 @@ struct WebsiteCreator: View
     var body: some View {
         ZStack(alignment: .bottom) {
             WebView(url: .publicUrl, viewModel: viewModel)
-
+            
             GlassMorphicSearchBar(
                 onClick: {
-                    showHomePage = true
+                    print("ads")
+                    showHomePage = !showHomePage
                 }
             )
                 .padding(.leading, 20).padding(.trailing, 20)
