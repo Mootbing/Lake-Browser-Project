@@ -34,7 +34,7 @@ struct HomeView: View {
                         onClick: {
                             
                         },
-                        URL: "https://chenghub.com"
+                        URL: "https://chenghub.org"
                     )
                 }
                     .padding(.leading, 35)

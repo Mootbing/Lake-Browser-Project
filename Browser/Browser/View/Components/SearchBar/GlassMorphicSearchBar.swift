@@ -22,27 +22,8 @@ struct GlassMorphicSearchBar: View {
     }
     
     func ProcessURL(URL: String) {
-        let URL = self.URL
-        
-        var prechoppedURL = "";
-        
-        self.isSecure = !URL.starts(with: "http://")
-        if let searchTextRange = URL.range(of: "://") {
-            let startIndex = URL.index(searchTextRange.upperBound, offsetBy: 0)
-            prechoppedURL = String(URL[startIndex...])
-        }
-        else {
-            prechoppedURL = self.URL
-        }
-        
-        //get URL ending and assign to ending variable
-        if let lastDotIndex = prechoppedURL.lastIndex(of: ".") {
-            let afterLastDotIndex = prechoppedURL.index(after: lastDotIndex)
-            self.ending = String(prechoppedURL[afterLastDotIndex...])
-            prechoppedURL = String(prechoppedURL[...lastDotIndex])
-        }
-        
-        self.searchText = prechoppedURL
+        let validator = URLValidator(urlString: self.URL)
+        (self.isSecure, self.searchText, self.ending) = validator.validateAndSplit()
     }
 
     var body: some View {
