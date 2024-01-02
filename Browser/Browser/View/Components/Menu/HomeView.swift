@@ -3,6 +3,12 @@ import SwiftUI
 struct HomeView: View {
     let options = ["Tabs", "Downloads", "Settings", "Bookmarks", "Favorites", "History", "Actions"]
     let additionalTexts = ["Option 1", "Option 2", "Option 3", "Option 4", "Scuff"] // Example additional texts
+    
+    @State private var SearchBar : GlassMorphicSearchBar;
+    
+    init (SearchBar: GlassMorphicSearchBar){
+        _SearchBar = State(initialValue: SearchBar)
+    }
 
     var body: some View {
         NavigationView {
@@ -30,12 +36,13 @@ struct HomeView: View {
                     }
                     .frame(maxHeight: .infinity)
                     
-                    GlassMorphicSearchBar(
-                        onClick: {
-                            
-                        },
-                        URL: "https://chenghub.org"
-                    )
+//                    GlassMorphicSearchBar(
+//                        onClick: {
+//                            
+//                        },
+//                        URL: "https://chenghub.org"
+//                    )
+                    SearchBar
                 }
                     .padding(.leading, 35)
                     .padding(.trailing, 35)
@@ -46,6 +53,13 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(
+            SearchBar: GlassMorphicSearchBar(
+                onClick: {
+
+                },
+                URL: "https://homeview.mock"
+            )
+        )
     }
 }

@@ -8,7 +8,12 @@ struct WebsiteCreator: View
     @State var webTitle = ""
     @State var validator = URLValidator(urlString: "")
     
-    @State var showHomePage = true;
+    @State var showHomePage = false;
+    
+    @State var SearchBar: GlassMorphicSearchBar = GlassMorphicSearchBar(
+        onClick: {},
+        URL: ""
+    );
     
     var group = Group
     {
@@ -64,19 +69,23 @@ struct WebsiteCreator: View
         ZStack(alignment: .bottom) {
             WebView(url: .publicUrl, viewModel: viewModel)
             
-            GlassMorphicSearchBar(
-                onClick: {
-                    print("ads")
-                    showHomePage = !showHomePage
-                },
-                URL: "https://chenghub.com"
-            )
+            self.SearchBar
                 .padding(.leading, 20).padding(.trailing, 20)
                 .padding(.bottom, 0) // Positioning 100px from the bottom
             
             if showHomePage {
-                HomeView()
+                HomeView(
+                    SearchBar: SearchBar
+                )
             }
+        }
+        .onAppear{
+            self.SearchBar = GlassMorphicSearchBar(
+                onClick: {
+                    showHomePage = !showHomePage
+                },
+                URL: "https://chenghub.org"
+            )
         }
     }
 //        ZStack

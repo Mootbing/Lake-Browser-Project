@@ -30,10 +30,10 @@ struct GlassMorphicSearchBar: View {
         ZStack {
             // Background with glass morphism effect
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white.opacity(0.25))
-//                .background(
-//                    VisualEffectView(effect: UIBlurEffect(style: .dark))
-//                )
+                .fill(Color.black.opacity(0.25))
+                .background(
+                    VisualEffectView(effect: UIBlurEffect(style: .light))
+                )
                 .background(Color.white.opacity(0.05))
                 .frame(height: 60) // Adjust to your Figma design height
                 .overlay(
@@ -75,7 +75,7 @@ struct GlassMorphicSearchBar: View {
         }
         .cornerRadius(20)
         .onChange(of: URL) { newURL in
-            ProcessURL(URL: newURL)
+            ProcessURL(URL: URL)
         }
         .onAppear {
             ProcessURL(URL: URL)
