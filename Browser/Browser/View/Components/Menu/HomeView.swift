@@ -33,7 +33,8 @@ struct HomeView: View {
                     GlassMorphicSearchBar(
                         onClick: {
                             
-                        }
+                        },
+                        URL: "https://chenghub.com"
                     )
                 }
                     .padding(.leading, 35)

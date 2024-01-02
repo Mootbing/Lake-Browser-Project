@@ -68,7 +68,8 @@ struct WebsiteCreator: View
                 onClick: {
                     print("ads")
                     showHomePage = !showHomePage
-                }
+                },
+                URL: "https://chenghub.com"
             )
                 .padding(.leading, 20).padding(.trailing, 20)
                 .padding(.bottom, 0) // Positioning 100px from the bottom
