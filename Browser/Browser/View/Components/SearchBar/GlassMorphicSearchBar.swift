@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GlassMorphicSearchBar: View {
     @State private var searchText = "YOUTUBE"
+    @State private var isSecure = false;
     
     // Define a callback function type
     typealias CallbackFunction = () -> Void
@@ -18,7 +19,7 @@ struct GlassMorphicSearchBar: View {
         ZStack {
             // Background with glass morphism effect
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.blue.opacity(0.25))
+                .fill(Color.white.opacity(0.25))
 //                .background(
 //                    VisualEffectView(effect: UIBlurEffect(style: .dark))
 //                )
@@ -33,19 +34,18 @@ struct GlassMorphicSearchBar: View {
                 HStack {
                     // Placeholder/Text field
                     HStack {
-                        Text("HTTPS://")
-                            .font(.system(size: 8))
-                            .kerning(2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .opacity(0.5)
-                            .padding(.top, 4)
-                        Text(searchText)
+                        Image(systemName: isSecure ? "lock.fill" : "lock.open.fill")
                             .font(.system(size: 15))
                             .fontWeight(.bold)
                             .kerning(2)
                             .foregroundColor(.white)
                             .padding(.leading, -7)
+                        Text(searchText)
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
+                            .kerning(2)
+                            .foregroundColor(.white)
+                            .padding(.leading, -2)
                         Text(".COM")
                             .font(.system(size: 8))
                             .kerning(2)
