@@ -35,13 +35,6 @@ struct HomeView: View {
                         }
                     }
                     .frame(maxHeight: .infinity)
-                    
-//                    GlassMorphicSearchBar(
-//                        onClick: {
-//                            
-//                        },
-//                        URL: "https://chenghub.org"
-//                    )
                     SearchBar.advanced()
                 }
                     .padding(.leading, 35)
@@ -55,12 +48,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
-            SearchBar: GlassMorphicSearchBar(
-                onClick: {
-
-                },
-                URL: "https://homeview.mock"
-            )
+            SearchBar: GlassMorphicSearchBar()
         )
     }
 }

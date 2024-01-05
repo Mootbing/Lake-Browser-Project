@@ -1,5 +1,13 @@
 import SwiftUI
 
+enum SwipeDirection {
+    case up
+    case down
+    case left
+    case right
+    case none
+}
+
 struct GlassMorphicSearchBar: View {
     @State private var searchText = "0.0.0.0"
     @State private var isSecure = false;
@@ -7,30 +15,40 @@ struct GlassMorphicSearchBar: View {
     @State private var showToolsets = false;
     
     @State public var URL = "defaulturlglassmorph"
+    
+    @State private var isSwiping = false;
 
     // Variable to store the callback function
-    private var onClick: () -> Void
+    private var onClick: () -> Void = {}
     private var onURLChange: (String) -> Void = {newURL in}
+    private var onSwipe: (SwipeDirection) -> Void = {swipe in}
+    
+    init() {}
 
     // Initialize the class with the callback function
-    init(onClick: @escaping () -> Void, URL: String) {
+    init(onClick: @escaping () -> Void, onSwipe: @escaping (SwipeDirection) -> Void, URL: String) {
         //remember to change below if anything changes here
         self.onClick = onClick;
         _URL = State(initialValue: URL)
+        
+        self.onSwipe = onSwipe;
     }
     
-    init(onClick: @escaping () -> Void, URL: String, onURLChange: @escaping (String) -> Void, showToolsets: Bool) {
+    init(onClick: @escaping () -> Void, onSwipe: @escaping (SwipeDirection) -> Void, URL: String, onURLChange: @escaping (String) -> Void, showToolsets: Bool) {
         // If anything changes here, remember to change above
         self.onClick = onClick
         _URL = State(initialValue: URL)
         
         self.onURLChange = onURLChange
         _showToolsets = State(initialValue: showToolsets)
+        
+        self.onSwipe = onSwipe
     }
     
     func advanced() -> GlassMorphicSearchBar {
         return GlassMorphicSearchBar(
             onClick: onClick,
+            onSwipe: onSwipe,
             URL: URL,
             onURLChange: { newURL in
                 URL = newURL
@@ -62,6 +80,55 @@ struct GlassMorphicSearchBar: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                )
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            
+                            if isSwiping {
+                                return
+                            }
+                            
+                            let swipeThreshold: CGFloat = 10 // Adjust as needed
+                            let translation = gesture.translation.width
+                            
+                            let swipeThresholdH: CGFloat = 5 // Adjust as needed
+                            let translationH = gesture.translation.height
+                            
+                            var dir: SwipeDirection = .none;
+                            
+                            if translation > swipeThreshold {
+                                // Swiped right
+                                print("previous")
+                                isSwiping = true
+                                dir = .right;
+                            } else if translation < -swipeThreshold {
+                                // Swiped left
+                                print("next")
+                                isSwiping = true
+                                dir = .left;
+                            }
+                            else if translationH > swipeThresholdH {
+                                print ("down")
+                                isSwiping = true
+                                dir = .down;
+                            }
+                            else if translationH < -swipeThreshold {
+                                print ("up")
+                                isSwiping = true
+                                dir = .up;
+                            }
+                            
+                            if dir != .none {
+                                onSwipe(dir)
+                            }
+                            else {
+                                print("asdf")
+                            }
+                        }
+                        .onEnded { _ in
+                            isSwiping = false;
+                        }
                 )
             
             Button(action: onClick) {
@@ -152,17 +219,6 @@ struct VisualEffectView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
         uiView.effect = effect
-    }
-}
-
-struct GlassMorphicSearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        GlassMorphicSearchBar(
-            onClick: {
-                
-            },
-            URL: "https://GlassMorphicSearchBar.com"
-        )
     }
 }
 

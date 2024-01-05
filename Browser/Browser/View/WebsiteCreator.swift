@@ -10,10 +10,7 @@ struct WebsiteCreator: View
     
     @State var showHomePage = false;
     
-    @State var SearchBar: GlassMorphicSearchBar = GlassMorphicSearchBar(
-        onClick: {},
-        URL: ""
-    );
+    @State var SearchBar: GlassMorphicSearchBar = GlassMorphicSearchBar()
     
     var group = Group
     {
@@ -84,7 +81,23 @@ struct WebsiteCreator: View
         .onAppear{
             self.SearchBar = GlassMorphicSearchBar(
                 onClick: {
-                    showHomePage = !showHomePage
+                    
+                },
+                onSwipe: {dir in
+                
+                    switch dir {
+                        case .up:
+                            showHomePage = true
+                        case .down:
+                            showHomePage = false
+                        case .right:
+                            self.viewModel.webViewNavigationPublisher.send(.backward)
+                        case .left:
+                            self.viewModel.webViewNavigationPublisher.send(.forward)
+                        default:
+                            break
+                    }
+                    
                 },
                 URL: "https://chenghub.org"
             )
