@@ -74,7 +74,11 @@ struct WebsiteCreator: View
                     }
                     
                 },
-                newURL: URLValidator.baseURLSearch
+                newURL: URLValidator.baseURLSearch, 
+                onURLChange: {newURL in
+                    self.viewModel.valuePublisher.send(newURL)
+                },
+                showToolsets: false
             )
         }
     }

@@ -35,7 +35,7 @@ struct HomeView: View {
                         }
                     }
                     .frame(maxHeight: .infinity)
-                    SearchBar.advanced()
+                    SearchBar.taskbar()
                 }
                     .padding(.leading, 35)
                     .padding(.trailing, 35)

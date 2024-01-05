@@ -92,19 +92,17 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
             webViewNavigationSubscriber?.cancel()
         }
         
+        //to get URL
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
         {
-          
-            // Get the title of loaded webcontent
-            print("did finish navigation")
             finishedNavigation = true
         
-            webView.evaluateJavaScript("document.title")
+            webView.evaluateJavaScript("document.location.href")
             { (response, error) in
                 
                 if let error = error
                 {
-                    print("Error getting title")
+                    print("Error getting url")
                     print(error.localizedDescription)
                 }
                 
@@ -167,7 +165,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
         
         @objc func showTimerEndedMessage()
         {
-            print("timer ended")
+//            print("timer ended")
             parent.viewModel.showLoader.send(false)
         }
         func createTimer() -> Timer
@@ -176,14 +174,15 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
         }
     
     
+        //reload, left, right
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
         {
-            print("start navigation")
+//            print("start navigation")
             // Shows loader
             parent.viewModel.showLoader.send(true)
             self.webViewNavigationSubscriber = self.parent.viewModel.webViewNavigationPublisher.receive(on: RunLoop.main).sink(receiveValue: { navigation in
                 
-                print("NAVIGATION:", navigation)
+//                print("NAVIGATION:", navigation)
                 switch navigation
                 {
                     

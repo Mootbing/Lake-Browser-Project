@@ -27,36 +27,27 @@ struct GlassMorphicSearchBar: View {
     init() {}
 
     // Initialize the class with the callback function
-    init(onClick: @escaping () -> Void, onSwipe: @escaping (SwipeDirection) -> Void, newURL: String) {
-        //remember to change below if anything changes here
-        self.onClick = onClick;
-        _URL = State(initialValue: newURL)
-        
-        self.onSwipe = onSwipe;
-    }
+//    init(onClick: @escaping () -> Void, onSwipe: @escaping (SwipeDirection) -> Void, newURL: String) {
+//        //remember to change below if anything changes here
+//        self.onClick = onClick;
+//        _URL = State(initialValue: newURL)
+//        
+//        self.onSwipe = onSwipe;
+//    }
     
     init(onClick: @escaping () -> Void, onSwipe: @escaping (SwipeDirection) -> Void, newURL: String, onURLChange: @escaping (String) -> Void, showToolsets: Bool) {
         // If anything changes here, remember to change above
-        self.onClick = onClick
-        
-        self.onURLChange = onURLChange
         _URL = State(initialValue: newURL)
-        
         _showToolsets = State(initialValue: showToolsets)
         
         self.onSwipe = onSwipe
+        self.onClick = onClick
+        self.onURLChange = onURLChange
     }
     
-    func advanced() -> GlassMorphicSearchBar {
-        return GlassMorphicSearchBar(
-            onClick: onClick,
-            onSwipe: onSwipe,
-            newURL: URL,
-            onURLChange: { newURL in
-                self.URL = newURL
-            },
-            showToolsets: true
-        )
+    func taskbar() -> GlassMorphicSearchBar {
+        self.showToolsets = true
+        return self
     }
     
     func ProcessURL(URL: String) {

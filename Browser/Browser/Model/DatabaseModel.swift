@@ -28,7 +28,7 @@ public class DatabaseModel {
 
     static func addTab(tab: TabObject) {
         tabs.append(tab)
-        print(tabs)
+//        print(tabs)
     }
 
     static func removeTab(tab: TabObject) {
