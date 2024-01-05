@@ -185,7 +185,7 @@ struct GlassMorphicSearchBar: View {
                 }
             }
         }
-        .cornerRadius(swipeDir != .none ? 100 : 20)
+        .cornerRadius(swipeDir == .left || swipeDir == .right ? 100 : 20)
             .gesture(
                 DragGesture()
                     .onChanged { gesture in
