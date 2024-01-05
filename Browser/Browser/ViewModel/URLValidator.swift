@@ -5,7 +5,7 @@ import SwiftUI
 public class URLValidator
 {
     var urlString = ""
-    public let baseURLSearch = "https://www.google.com/search?q="
+    public static var baseURLSearch = "https://www.google.com/search?q="
     
     init(urlString: String)
     {
@@ -23,7 +23,7 @@ public class URLValidator
         //if searching without .smt ending
         //todo, check if there's content after .
         if !URL.contains(".") {
-            URL = baseURLSearch + URL;
+            URL = URLValidator.baseURLSearch + URL;
         }
         
         var prechoppedURL = "";

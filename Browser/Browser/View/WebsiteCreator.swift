@@ -73,10 +73,12 @@ struct WebsiteCreator: View
                 .padding(.leading, 20).padding(.trailing, 20)
                 .padding(.bottom, 0) // Positioning 100px from the bottom
             
-            if showHomePage {
+            .popover(isPresented: $showHomePage) {
                 HomeView(
                     SearchBar: SearchBar
                 )
+                    .cornerRadius(25)
+                    .ignoresSafeArea()
             }
         }
         .onAppear{

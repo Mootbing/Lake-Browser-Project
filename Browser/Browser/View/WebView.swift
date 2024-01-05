@@ -211,8 +211,17 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
             // Suppose you don't want your user to go a restricted site
             // Here you can get many information about new url from 'navigationAction.request.description'
             
+            if let url = navigationAction.request.url
+            {
+                if !DatabaseModel.isChengHuaMode
+                {
+                    DatabaseModel.addToHistory(tab: DatabaseModel.makeURLObject(URL: url))
+                }
+            }
+            
             if let host = navigationAction.request.url?.host
             {
+                print(host)
                 if host == "restricted.com"
                 {
                     // This cancels the navigation
