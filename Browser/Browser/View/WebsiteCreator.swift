@@ -40,14 +40,13 @@ struct WebsiteCreator: View
         }
         .onAppear{
             self.SearchBar = GlassMorphicSearchBar(
-                onClick: {
-                    
-                },
+                URLSub: self.viewModel.showWebTitle,
                 onSwipe: {dir in
                 
                     switch dir {
                         case .up:
                             showHomePage = true
+//                            self.SearchBar.swipeDir = .none;
                         case .down:
                             if showHomePage {
                                 showHomePage = false
@@ -80,6 +79,8 @@ struct WebsiteCreator: View
                 },
                 showToolsets: false
             )
+            
+//            self.viewModel.valuePublisher.subscribe(on: )
         }
     }
 //        ZStack

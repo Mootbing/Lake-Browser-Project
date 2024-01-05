@@ -96,29 +96,45 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
         {
             finishedNavigation = true
-        
-            webView.evaluateJavaScript("document.location.href")
-            { (response, error) in
-                
-                if let error = error
-                {
-                    print("Error getting url")
-                    print(error.localizedDescription)
+            
+            if !DatabaseModel.isChengHuaMode
+            {
+                if let URL = webView.url{
+                    self.parent.viewModel.showWebTitle.send(URL.absoluteString)
+                    
+                    if !DatabaseModel.isChengHuaMode
+                    {
+                        DatabaseModel.history.append(DatabaseModel.makeURLObject(URL: URL))
+                    }
                 }
-                
-                guard let title = response as? String else
-                {
-                    return
-                }
-                
-                self.parent.viewModel.showWebTitle.send(title)
             }
+        
+//            webView.evaluateJavaScript("document.location.href")
+//            { (response, error) in
+//                
+//                if let error = error
+//                {
+//                    print("Error getting url")
+//                    print(error.localizedDescription)
+//                }
+//                
+//                guard let title = response as? String else
+//                {
+//                    return
+//                }
+//                
+//                self.parent.viewModel.showWebTitle.send(title)
+//                
+//                if !DatabaseModel.isChengHuaMode
+//                {
+//                    DatabaseModel.history.append(DatabaseModel.makeURLObject(URL: URL(string: title)!))
+//                }
+//            }
             
             /* An observer that observes 'viewModel.valuePublisher' to get value from TextField and
              pass that value to web app by calling JavaScript function */
             valueSubscriber = parent.viewModel.valuePublisher.receive(on: RunLoop.main).sink(receiveValue: { value in
                
-                //Needs a model to determine if the value is a valid URL or create one using a search URL
                 if let url = URL(string: value)
                 {
                     let request = URLRequest(url: url)
@@ -199,6 +215,10 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
                     case .reload:
                         webView.reload()
                 }
+                
+                print("sending")
+                print(webView.url?.absoluteString ?? "")
+                self.parent.viewModel.showWebTitle.send(webView.url?.absoluteString ?? "")
             })
             
             _ = createTimer()
@@ -210,17 +230,9 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
             // Suppose you don't want your user to go a restricted site
             // Here you can get many information about new url from 'navigationAction.request.description'
             
-            if let url = navigationAction.request.url
-            {
-                if !DatabaseModel.isChengHuaMode
-                {
-                    DatabaseModel.addToHistory(tab: DatabaseModel.makeURLObject(URL: url))
-                }
-            }
-            
             if let host = navigationAction.request.url?.host
             {
-                print(host)
+//                print(host)
                 if host == "restricted.com"
                 {
                     // This cancels the navigation
