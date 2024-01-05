@@ -216,8 +216,6 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
                         webView.reload()
                 }
                 
-                print("sending")
-                print(webView.url?.absoluteString ?? "")
                 self.parent.viewModel.showWebTitle.send(webView.url?.absoluteString ?? "")
             })
             
