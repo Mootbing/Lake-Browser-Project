@@ -19,63 +19,23 @@ struct WebsiteCreator: View
         Spacer()
     }
     
-    //NAVIGATION VIEW
-    // For WebView's forward, backward, and reload navigation
-    var webViewNavigationBar: some View
-    {
-        
-        VStack(spacing: 0)
-        {
-            Divider()
-            HStack
-            {
-                Spacer()
-                Button(action: {self.viewModel.webViewNavigationPublisher.send(.backward)})
-                {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 20, weight: .regular))
-                        .imageScale(.large)
-                        .foregroundColor(.gray)
-                }
-                group
-                Button(action: {self.viewModel.webViewNavigationPublisher.send(.forward)})
-                {
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 20, weight: .regular))
-                        .imageScale(.large)
-                        .foregroundColor(.gray)
-                }
-               group
-                Button(action: {self.viewModel.webViewNavigationPublisher.send(.reload)})
-                {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.system(size: 20, weight: .regular))
-                        .imageScale(.large)
-                        .foregroundColor(.gray).padding(.bottom, 4)
-                }
-                Spacer()
-            }.frame(height: 50)
-            Divider()
-        }
-    }
-    
-    
-    
     //BROWSER VIEW
     var body: some View {
         ZStack(alignment: .bottom) {
             WebView(url: .publicUrl, viewModel: viewModel)
             
-            self.SearchBar
-                .padding(.leading, 20).padding(.trailing, 20)
-                .padding(.bottom, 0) // Positioning 100px from the bottom
-            
-            .popover(isPresented: $showHomePage) {
-                HomeView(
-                    SearchBar: SearchBar
-                )
-                    .cornerRadius(25)
-                    .ignoresSafeArea()
+            if self.SearchBar.URL != "" {
+                self.SearchBar
+                    .padding(.leading, 20).padding(.trailing, 20)
+                    .padding(.bottom, 0) // Positioning 100px from the bottom
+                
+                .popover(isPresented: $showHomePage) {
+                    HomeView(
+                        SearchBar: SearchBar
+                    )
+                        .cornerRadius(25)
+                        .ignoresSafeArea()
+                }
             }
         }
         .onAppear{
@@ -89,17 +49,32 @@ struct WebsiteCreator: View
                         case .up:
                             showHomePage = true
                         case .down:
-                            showHomePage = false
+                            if showHomePage {
+                                showHomePage = false
+                            }
+                            else {
+                                self.viewModel.webViewNavigationPublisher.send(.reload)
+                            }
                         case .right:
-                            self.viewModel.webViewNavigationPublisher.send(.backward)
+                            if !showHomePage {
+                                self.viewModel.webViewNavigationPublisher.send(.backward)
+                            }
+                            else {
+                                showHomePage = false
+                            }
                         case .left:
-                            self.viewModel.webViewNavigationPublisher.send(.forward)
+                            if !showHomePage {
+                                self.viewModel.webViewNavigationPublisher.send(.forward)
+                            }
+                            else {
+                                showHomePage = false
+                            }
                         default:
                             break
                     }
                     
                 },
-                URL: "https://chenghub.org"
+                newURL: URLValidator.baseURLSearch
             )
         }
     }
@@ -154,3 +129,44 @@ struct WebsiteCreator: View
     
     
 }
+
+
+//NAVIGATION VIEW
+// For WebView's forward, backward, and reload navigation
+//    var webViewNavigationBar: some View
+//    {
+//
+//        VStack(spacing: 0)
+//        {
+//            Divider()
+//            HStack
+//            {
+//                Spacer()
+//                Button(action: {self.viewModel.webViewNavigationPublisher.send(.backward)})
+//                {
+//                    Image(systemName: "chevron.left")
+//                        .font(.system(size: 20, weight: .regular))
+//                        .imageScale(.large)
+//                        .foregroundColor(.gray)
+//                }
+//                group
+//                Button(action: {self.viewModel.webViewNavigationPublisher.send(.forward)})
+//                {
+//                    Image(systemName: "chevron.right")
+//                        .font(.system(size: 20, weight: .regular))
+//                        .imageScale(.large)
+//                        .foregroundColor(.gray)
+//                }
+//               group
+//                Button(action: {self.viewModel.webViewNavigationPublisher.send(.reload)})
+//                {
+//                    Image(systemName: "arrow.clockwise")
+//                        .font(.system(size: 20, weight: .regular))
+//                        .imageScale(.large)
+//                        .foregroundColor(.gray).padding(.bottom, 4)
+//                }
+//                Spacer()
+//            }.frame(height: 50)
+//            Divider()
+//        }
+//    }
