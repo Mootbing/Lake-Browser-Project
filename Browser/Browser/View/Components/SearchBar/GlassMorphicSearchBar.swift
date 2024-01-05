@@ -234,7 +234,6 @@ struct GlassMorphicSearchBar: View {
                         }
                         setNewURLWithUIUpdate(newURL: newURL);
                         isEditing = false;
-                        swipeDir = .none;
                     })
                     .onAppear {
                         setNewURLWithUIUpdate(newURL: URL)
