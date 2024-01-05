@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    let options = ["Tabs", "Settings", "Bookmarks", "Favorites", "History", "Share"]
+    let options = ["Tabs", "Settings", "Search Engine", "Bookmarks", "Favorites", "History", "Share"]
     let additionalTexts = ["Option 1", "Option 2", "Option 3", "Option 4", "Scuff"] // Example additional texts
     
     @State private var SearchBar : GlassMorphicSearchBar;
@@ -35,7 +35,7 @@ struct HomeView: View {
                         }
                     }
                     .frame(maxHeight: .infinity)
-                    SearchBar.taskbar()
+                    SearchBar.advanced()
                 }
                     .padding(.leading, 35)
                     .padding(.trailing, 35)

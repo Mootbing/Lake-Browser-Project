@@ -15,7 +15,9 @@ struct GlassMorphicSearchBar: View {
     @State private var ending = "";
     @State private var showToolsets = false;
     
-    @State public var URL = ""
+    static var DefaultURL = "";
+    
+    @State public var URL = DefaultURL;
     public var URLSubscription = PassthroughSubject<String, Never>()
     
     @State public var swipeDir: SwipeDirection = .none;
@@ -37,9 +39,9 @@ struct GlassMorphicSearchBar: View {
         self.onURLChange = onURLChange
     }
     
-    func taskbar() -> GlassMorphicSearchBar {
+    func advanced() -> GlassMorphicSearchBar {        
         return GlassMorphicSearchBar(
-            URLSub: URLSubscription, onSwipe: onSwipe, newURL: URL, onURLChange: onURLChange, showToolsets: true
+            URLSub: URLSubscription, onSwipe: onSwipe, newURL: GlassMorphicSearchBar.DefaultURL, onURLChange: onURLChange, showToolsets: true
         )
     }
     
@@ -57,7 +59,6 @@ struct GlassMorphicSearchBar: View {
     func setNewURLWithUIUpdate(newURL: String) {
         let processedURL = ProcessURL(newURL: newURL)
         self.URL = processedURL
-//        onURLChange(self.URL)
     }
 
     var body: some View {
@@ -75,61 +76,7 @@ struct GlassMorphicSearchBar: View {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.white.opacity(0.08), lineWidth: 1)
                 )
-                .gesture(
-                    DragGesture()
-                        .onChanged { gesture in
-                            
-                            if swipeDir != .none {
-                                return
-                            }
-                            
-                            let swipeThreshold: CGFloat = 10 // Adjust as needed
-                            let translation = gesture.translation.width
-                            
-                            let swipeThresholdH: CGFloat = 5 // Adjust as needed
-                            let translationH = gesture.translation.height
-                            
-                            swipeDir = .none;
-                            
-                            if translation > swipeThreshold {
-                                // Swiped right
-//                                print("previous")
-                                swipeDir = .right;
-                            } else if translation < -swipeThreshold {
-                                // Swiped left
-//                                print("next")
-                                swipeDir = .left;
-                            }
-                            else if translationH > swipeThresholdH {
-//                                print ("down")
-                                swipeDir = .down;
-                            }
-                            else if translationH < -swipeThreshold {
-//                                print ("up")
-                                swipeDir = .up;
-                            }
-                            
-                            if swipeDir != .none {
-                                onSwipe(swipeDir)
-                            }
-                        }
-                        .onEnded { _ in
-                            swipeDir = .none;
-                        }
-                )
-                .gesture(
-                    LongPressGesture(minimumDuration: 0.25) // Adjust the minimum duration as needed
-                        .onChanged { _ in
-                            //not working
-                        }
-                        .onEnded { _ in
-//                            showToolsets = !showToolsets
-                            isEditing = true
-                        }
-                )
-//                .onTapGesture {
-//                                        //pop over keyboard and get the text written
-//                }
+
                 
             if isEditing {
                 let snapshot = URL
@@ -210,11 +157,9 @@ struct GlassMorphicSearchBar: View {
                             
                             // Clear icon
                             Button(action: {
-                                searchText = ""
-                                ending = ""
-                                isSecure = false
-                                
-                                URLSubscription.send(URLValidator.baseURLSearch)
+                                setNewURLWithUIUpdate(newURL: URLValidator.baseURLSearch)
+                                onURLChange(self.URL)
+                                showToolsets = false
                             }) {
                                 Image(systemName: "xmark")
                                     .foregroundColor(.white)
@@ -233,7 +178,6 @@ struct GlassMorphicSearchBar: View {
                             return;
                         }
                         setNewURLWithUIUpdate(newURL: newURL);
-                        isEditing = false;
                     })
                     .onAppear {
                         setNewURLWithUIUpdate(newURL: URL)
@@ -241,7 +185,62 @@ struct GlassMorphicSearchBar: View {
                 }
             }
         }
-            .cornerRadius(20)
+        .cornerRadius(swipeDir != .none ? 100 : 20)
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        
+                        if swipeDir != .none {
+                            return
+                        }
+                        
+                        let swipeThreshold: CGFloat = 10 // Adjust as needed
+                        let translation = gesture.translation.width
+                        
+                        let swipeThresholdH: CGFloat = 5 // Adjust as needed
+                        let translationH = gesture.translation.height
+                        
+                        swipeDir = .none;
+                        
+                        if translation > swipeThreshold {
+                            // Swiped right
+//                                print("previous")
+                            swipeDir = .right;
+                        } else if translation < -swipeThreshold {
+                            // Swiped left
+//                                print("next")
+                            swipeDir = .left;
+                        }
+                        else if translationH > swipeThresholdH {
+//                                print ("down")
+                            swipeDir = .down;
+                        }
+                        else if translationH < -swipeThreshold {
+//                                print ("up")
+                            swipeDir = .up;
+                        }
+                        
+                        if swipeDir != .none {
+                            onSwipe(swipeDir)
+                        }
+                    }
+                    .onEnded { _ in
+                        swipeDir = .none;
+                    }
+            )
+            .gesture(
+                LongPressGesture(minimumDuration: 0.25) // Adjust the minimum duration as needed
+                    .onChanged { _ in
+                        //not working
+                    }
+                    .onEnded { _ in
+//                            showToolsets = !showToolsets
+                        isEditing = !isEditing
+                    }
+            )
+            .onChange(of: URL, perform: { newURL in
+                GlassMorphicSearchBar.DefaultURL = newURL
+            })
     }
 }
 

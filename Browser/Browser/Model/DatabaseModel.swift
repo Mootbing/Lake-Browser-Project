@@ -37,7 +37,6 @@ public class DatabaseModel {
 
     static func addToHistory(tab: TabObject) {
         history.append(tab)
-        print(history)
     }
 
     static func removeFromHistory(tab: TabObject) {
