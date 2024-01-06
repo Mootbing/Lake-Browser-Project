@@ -2,7 +2,7 @@ import SwiftUI
 
 struct InformationRow: View {
     var title = "";
-    var buttons = ["asdf"];
+    var buttons: [SettingButton];
     @State var selected = false;
 
     var body: some View {
@@ -24,17 +24,16 @@ struct InformationRow: View {
             HStack(spacing: 20) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
-                        ForEach(buttons, id: \.self) { text in
-                            VStack() {
+                        ForEach(buttons, id: \.label) { btn in
+                            VStack {
                                 SelectableButton(
-                                    name: text,
-                                    icon: "xmark"
+                                    btnObj: btn
                                 )
-                            }
                                 .padding(.leading, 30)
                                 .padding(.top, 30)
                                 .padding(.bottom, 30)
                                 .opacity(selected ? 1 : -3)
+                            }
                         }
                     }
                 }
@@ -50,11 +49,5 @@ struct InformationRow: View {
                 )
             }
         }
-    }
-}
-
-struct InformationRow_Previews: PreviewProvider {
-    static var previews: some View {
-        InformationRow()
     }
 }

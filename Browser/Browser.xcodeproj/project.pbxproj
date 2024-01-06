@@ -21,6 +21,8 @@
 		68DA110A2B278AFE009E3C15 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA11092B278AFE009E3C15 /* InformationRow.swift */; };
 		68DA110C2B278F66009E3C15 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DA110B2B278F66009E3C15 /* SelectableButton.swift */; };
 		68EABE492B48ABEF0018DB1A /* GlassMorphicSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EABE482B48ABEF0018DB1A /* GlassMorphicSearchBar.swift */; };
+		68EABE4B2B49C9270018DB1A /* HomeViewTabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EABE4A2B49C9270018DB1A /* HomeViewTabsModel.swift */; };
+		68EABE4E2B49D21E0018DB1A /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EABE4D2B49D21E0018DB1A /* SettingsButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		68DA11092B278AFE009E3C15 /* InformationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRow.swift; sourceTree = "<group>"; };
 		68DA110B2B278F66009E3C15 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 		68EABE482B48ABEF0018DB1A /* GlassMorphicSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassMorphicSearchBar.swift; sourceTree = "<group>"; };
+		68EABE4A2B49C9270018DB1A /* HomeViewTabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTabsModel.swift; sourceTree = "<group>"; };
+		68EABE4D2B49D21E0018DB1A /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				68A2BBC32B47BD47007A9CDF /* DatabaseModel.swift */,
+				68EABE4A2B49C9270018DB1A /* HomeViewTabsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -138,11 +143,20 @@
 		68DA110E2B2791AA009E3C15 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				68DA11072B222926009E3C15 /* HomeView.swift */,
+				68EABE4C2B49D2100018DB1A /* Settings */,
 				68DA11092B278AFE009E3C15 /* InformationRow.swift */,
 				68DA110B2B278F66009E3C15 /* SelectableButton.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		68EABE4C2B49D2100018DB1A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				68DA11072B222926009E3C15 /* HomeView.swift */,
+				68EABE4D2B49D21E0018DB1A /* SettingsButton.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +234,10 @@
 				214929E1298C336B0011184E /* ContentView.swift in Sources */,
 				214929F3298C35500011184E /* URLValidator.swift in Sources */,
 				68DA110A2B278AFE009E3C15 /* InformationRow.swift in Sources */,
+				68EABE4B2B49C9270018DB1A /* HomeViewTabsModel.swift in Sources */,
 				214929EF298C34D90011184E /* WebView.swift in Sources */,
 				214929DF298C336B0011184E /* BrowserApp.swift in Sources */,
+				68EABE4E2B49D21E0018DB1A /* SettingsButton.swift in Sources */,
 				214929ED298C34690011184E /* LoadingView.swift in Sources */,
 				68DA110C2B278F66009E3C15 /* SelectableButton.swift in Sources */,
 				68EABE492B48ABEF0018DB1A /* GlassMorphicSearchBar.swift in Sources */,

@@ -1,21 +1,25 @@
 import SwiftUI
 
 struct SelectableButton: View {
-    var name = "";
-    var icon = "xmark"
+    var btnObj : SettingButton;
     @State var selected = false;
     
+    init(btnObj: SettingButton) {
+        self.btnObj = btnObj
+        self.selected = btnObj.toggle ?? false
+    }
+    
     var body: some View {
-        Button(action: {}) {
-            Image(systemName: icon)
+        Button(action: btnObj.onClick) {
+            Image(systemName: btnObj.icon)
                 .foregroundColor(.white)
                 .font(.system(size: 12))
         }
             .frame(width: 32, height: 32) // Adjust to your Figma design
-            .background(Color.white.opacity(0.05))
+            .background(Color.white.opacity(selected ? 0.25 : 0.05))
             .clipShape(Circle())
         
-        Text(name)
+        Text(btnObj.label)
             .foregroundColor(.white)
             .opacity(0.75)
             .fontWeight(.semibold)
@@ -25,8 +29,3 @@ struct SelectableButton: View {
     }
 }
 
-struct SelectableButton_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectableButton()
-    }
-}

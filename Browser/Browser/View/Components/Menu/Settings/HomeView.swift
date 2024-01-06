@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    let options = ["Tabs", "Settings", "Search Engine", "Bookmarks", "Favorites", "History", "Share"]
-    let additionalTexts = ["Option 1", "Option 2", "Option 3", "Option 4", "Scuff"] // Example additional texts
+//    let options = ["Tabs", "Settings", "Search Engine", "Bookmarks", "Favorites", "History", "Share"]
+//    let additionalTexts = ["Option 1", "Option 2", "Option 3", "Option 4", "Scuff"] // Example additional texts
     
     @State private var SearchBar : GlassMorphicSearchBar;
     
@@ -26,11 +26,9 @@ struct HomeView: View {
                     // Tabs, Downloads, Settings, etc.
                     ScrollView() {
                         VStack(alignment: .leading, spacing: 15) {
-                            ForEach(options, id: \.self) { option in
-                                InformationRow(
-                                    title: option,
-                                    buttons: additionalTexts
-                                )
+                            let keyValuePairs = HomeViewTabsModel.MakeTabsModel().sorted { $0.key < $1.key }
+                            ForEach(keyValuePairs, id: \.key) { (title, buttons) in
+                                InformationRow(title: title, buttons: buttons)
                             }
                         }
                     }
