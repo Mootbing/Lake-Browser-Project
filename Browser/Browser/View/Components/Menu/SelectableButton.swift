@@ -18,6 +18,7 @@ struct SelectableButton: View {
             .frame(width: 32, height: 32) // Adjust to your Figma design
             .background(Color.white.opacity(selected ? 0.25 : 0.05))
             .clipShape(Circle())
+            .padding(.top, 10)
         
         Text(btnObj.label)
             .foregroundColor(.white)
@@ -26,6 +27,7 @@ struct SelectableButton: View {
             .padding(.top, 3)
             .kerning(1)
             .font(.system(size: 12))
+            .padding(.top, -30)
     }
 }
 

@@ -30,8 +30,8 @@ struct InformationRow: View {
                                     btnObj: btn
                                 )
                                 .padding(.leading, 30)
-                                .padding(.top, 30)
-                                .padding(.bottom, 30)
+                                .padding(.top, 20)
+                                .padding(.bottom, 20)
                                 .opacity(selected ? 1 : -3)
                             }
                         }
