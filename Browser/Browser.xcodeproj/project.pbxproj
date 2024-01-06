@@ -77,7 +77,6 @@
 			children = (
 				68A2BBC22B47BD33007A9CDF /* Model */,
 				214929DE298C336B0011184E /* BrowserApp.swift */,
-				214929F8298C52840011184E /* ViewModel */,
 				214929F6298C52540011184E /* View */,
 				214929E2298C336B0011184E /* Assets.xcassets */,
 				214929E4298C336B0011184E /* Preview Content */,
@@ -119,6 +118,7 @@
 			children = (
 				68A2BBC32B47BD47007A9CDF /* DatabaseModel.swift */,
 				68EABE4A2B49C9270018DB1A /* HomeViewTabsModel.swift */,
+				214929F8298C52840011184E /* ViewModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";

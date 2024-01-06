@@ -31,7 +31,11 @@ struct WebsiteCreator: View
                 
                 .popover(isPresented: $showHomePage) {
                     HomeView(
-                        SearchBar: SearchBar
+                        SearchBar: SearchBar,
+                        HomeViewTabs: HomeViewTabsModel.MakeTabsModel(viewModel: viewModel, closeDrawerCallback: {
+                                showHomePage = false
+                            }
+                         )
                     )
                         .cornerRadius(25)
                         .ignoresSafeArea()

@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct HomeView: View {
-//    let options = ["Tabs", "Settings", "Search Engine", "Bookmarks", "Favorites", "History", "Share"]
-//    let additionalTexts = ["Option 1", "Option 2", "Option 3", "Option 4", "Scuff"] // Example additional texts
     
+    var HomeViewTabs: [String: [SettingButton]];
     @State private var SearchBar : GlassMorphicSearchBar;
     
-    init (SearchBar: GlassMorphicSearchBar){
+    init (SearchBar: GlassMorphicSearchBar, HomeViewTabs: [String: [SettingButton]]){
         _SearchBar = State(initialValue: SearchBar)
+        self.HomeViewTabs = HomeViewTabs
     }
 
     var body: some View {
@@ -26,7 +26,7 @@ struct HomeView: View {
                     // Tabs, Downloads, Settings, etc.
                     ScrollView() {
                         VStack(alignment: .leading, spacing: 15) {
-                            let keyValuePairs = HomeViewTabsModel.MakeTabsModel().sorted { $0.key < $1.key }
+                            let keyValuePairs = HomeViewTabs.sorted { $0.key < $1.key }
                             ForEach(keyValuePairs, id: \.key) { (title, buttons) in
                                 InformationRow(title: title, buttons: buttons)
                             }
@@ -40,13 +40,5 @@ struct HomeView: View {
                     .padding(.top, 50)
             }
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(
-            SearchBar: GlassMorphicSearchBar()
-        )
     }
 }

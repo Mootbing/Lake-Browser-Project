@@ -9,85 +9,91 @@ import Foundation
 
 public class HomeViewTabsModel {
     
-    public static func MakeTabsModel() -> [String: [SettingButton]] {
+    public static func MakeTabsModel(viewModel: ViewModel, closeDrawerCallback: @escaping () -> Void) -> [String: [SettingButton]] {
         
         //static but refreshing
         let StaticTabModels: [String: [SettingButton]] = [
             "For You": [
+                //, toggle: GlassMorphicSearchBar.DefaultURL == "https://google.com"
                 SettingButton(label: "Google", icon: "g.circle", onClick: {
-                    // Send URL to Google
-                }), //toggle: GlassMorphicSearchBar.DefaultURL == currentURL
+                    viewModel.valuePublisher.send("https://www.google.com")
+                    closeDrawerCallback()
+                }),
                 SettingButton(label: "YouTube", icon: "y.circle", onClick: {
-                    // Send URL to YouTube
+                    viewModel.valuePublisher.send("https://www.youtube.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Facebook", icon: "f.circle", onClick: {
-                    // Send URL to Facebook
+                    viewModel.valuePublisher.send("https://www.facebook.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Amazon", icon: "a.circle", onClick: {
-                    // Send URL to Amazon
+                    viewModel.valuePublisher.send("https://www.amazon.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Twitter", icon: "t.circle", onClick: {
-                    // Send URL to Twitter
+                    viewModel.valuePublisher.send("https://twitter.com")
+                    closeDrawerCallback()
                 }),
-                SettingButton(label: "Instagram", icon: "i.circle", onClick: {
-                    // Send URL to Instagram
+                SettingButton(label: "Instagram", icon: "camera", onClick: {
+                    viewModel.valuePublisher.send("https://www.instagram.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "LinkedIn", icon: "l.circle", onClick: {
-                    // Send URL to LinkedIn
+                    viewModel.valuePublisher.send("https://www.linkedin.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Netflix", icon: "n.circle", onClick: {
-                    // Send URL to Netflix
+                    viewModel.valuePublisher.send("https://www.netflix.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Reddit", icon: "r.circle", onClick: {
-                    // Send URL to Reddit
+                    viewModel.valuePublisher.send("https://www.reddit.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Wikipedia", icon: "w.circle", onClick: {
-                    // Send URL to Wikipedia
+                    viewModel.valuePublisher.send("https://www.wikipedia.org")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Microsoft", icon: "m.circle", onClick: {
-                    // Send URL to Microsoft
+                    viewModel.valuePublisher.send("https://www.microsoft.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Apple", icon: "a.circle", onClick: {
-                    // Send URL to Apple
+                    viewModel.valuePublisher.send("https://www.apple.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Yahoo", icon: "y.circle", onClick: {
-                    // Send URL to Yahoo
-                }),
-                SettingButton(label: "Netflix", icon: "n.circle", onClick: {
-                    // Send URL to Netflix
+                    viewModel.valuePublisher.send("https://www.yahoo.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Pinterest", icon: "p.circle", onClick: {
-                    // Send URL to Pinterest
+                    viewModel.valuePublisher.send("https://www.pinterest.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Etsy", icon: "e.circle", onClick: {
-                    // Send URL to Etsy
+                    viewModel.valuePublisher.send("https://www.etsy.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "CNN", icon: "c.circle", onClick: {
-                    // Send URL to CNN
+                    viewModel.valuePublisher.send("https://www.cnn.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "BBC", icon: "b.circle", onClick: {
-                    // Send URL to BBC
+                    viewModel.valuePublisher.send("https://www.bbc.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Adobe", icon: "a.circle", onClick: {
-                    // Send URL to Adobe
+                    viewModel.valuePublisher.send("https://www.adobe.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "GitHub", icon: "g.circle", onClick: {
-                    // Send URL to GitHub
+                    viewModel.valuePublisher.send("https://github.com")
+                    closeDrawerCallback()
                 }),
                 SettingButton(label: "Stack Overflow", icon: "s.circle", onClick: {
-                    // Send URL to Stack Overflow
-                }),
-                SettingButton(label: "CNN", icon: "c.circle", onClick: {
-                    // Send URL to CNN
-                }),
-                SettingButton(label: "BBC", icon: "b.circle", onClick: {
-                    // Send URL to BBC
-                }),
-                SettingButton(label: "Adobe", icon: "a.circle", onClick: {
-                    // Send URL to Adobe
-                }),
-                SettingButton(label: "GitHub", icon: "g.circle", onClick: {
-                    // Send URL to GitHub
+                    viewModel.valuePublisher.send("https://stackoverflow.com")
+                    closeDrawerCallback()
                 }),
             ],
             "Settings": [

@@ -4,7 +4,7 @@ import Combine
 //https://www.avanderlee.com/swift/combine/
 //https://www.techtarget.com/whatis/definition/Model-View-ViewModel
 
-class ViewModel: ObservableObject
+public class ViewModel: ObservableObject
 {
     var webViewNavigationPublisher = PassthroughSubject<WebViewNavigation, Never>()
     var showWebTitle = PassthroughSubject<String, Never>()
