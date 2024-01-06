@@ -2,7 +2,7 @@
 import Foundation
 import SwiftUI
 
-enum SearchEngineChoice {
+public enum SearchEngineChoice {
     case google
     case bing
     case youtube
@@ -20,32 +20,36 @@ public class URLValidator
     static let youtubeBase = "https://www.youtube.com/results?search_query="
     static let redditBase = "https://www.reddit.com/search/?q="
     static let duckDuckGoBase = "https://duckduckgo.com/?q="
-    static let AIBase = "https://www.bing.com/search?showconv=1&q="
+    static let AIBase = "https://www.bing.com/chat?q="
     static let yandexBase = "https://yandex.com/search/?text="
     static let baiduBase = "https://www.baidu.com/s?wd="
     
     public static var baseURLSearch = googleBase
+    public static var selectedEngine : SearchEngineChoice = .google
     
     static func changeBaseURL(choice: SearchEngineChoice) {
-            switch choice {
-            case .google:
-                baseURLSearch = googleBase
-            case .bing:
-                baseURLSearch = bingBase
-            case .youtube:
-                baseURLSearch = youtubeBase
-            case .reddit:
-                baseURLSearch = redditBase
-            case .duckduckgo:
-                baseURLSearch = duckDuckGoBase
-            case .ai:
-                baseURLSearch = AIBase
-            case .baidu:
-                baseURLSearch = baiduBase
-            case .yandex:
-                baseURLSearch = yandexBase
-            }
+        switch choice {
+        case .google:
+            baseURLSearch = googleBase
+        case .bing:
+            baseURLSearch = bingBase
+        case .youtube:
+            baseURLSearch = youtubeBase
+        case .reddit:
+            baseURLSearch = redditBase
+        case .duckduckgo:
+            baseURLSearch = duckDuckGoBase
+        case .ai:
+            baseURLSearch = AIBase
+        case .baidu:
+            baseURLSearch = baiduBase
+        case .yandex:
+            baseURLSearch = yandexBase
         }
+        
+        selectedEngine = choice
+        print(selectedEngine)
+    }
     
     
     

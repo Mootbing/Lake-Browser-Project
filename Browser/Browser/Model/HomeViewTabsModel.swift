@@ -9,49 +9,43 @@ import Foundation
 
 public class HomeViewTabsModel {
     
-    //array of structs
-    static let StaticTabModels: [String: [SettingButton]] = [
-        "Settings": [
-            SettingButton(label: "Chengcognito", icon: "person.slash", onClick: {
-                DatabaseModel.isChengHuaMode = true
-            }),
-        ],
-        "Search Engine": [
-            SettingButton(label: "Google", icon: "g.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .google)
-            }),
-            SettingButton(label: "Bing", icon: "b.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .bing)
-            }),
-            SettingButton(label: "YouTube", icon: "y.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .youtube)
-            }),
-            SettingButton(label: "Reddit", icon: "r.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .reddit)
-            }),
-            SettingButton(label: "DuckDuckGo", icon: "d.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .duckduckgo)
-            }),
-            SettingButton(label: "AI", icon: "a.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .ai)
-            }),
-            SettingButton(label: "Yandex", icon: "y.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .yandex)
-            }),
-            SettingButton(label: "Baidu", icon: "b.circle", onClick: {
-                URLValidator.changeBaseURL(choice: .baidu)
-            })
-        ],
-//        "Share": [
-//            SettingButton(
-//                label: "iMsg", icon: "bubble", onClick: {
-//                    //forward link to imessage
-//                }
-//            )
-//        ]
-    ];
-    
     public static func MakeTabsModel() -> [String: [SettingButton]] {
+        
+        //static but refreshing
+        let StaticTabModels: [String: [SettingButton]] = [
+            "Settings": [
+                SettingButton(label: "Chengcognito", icon: "person.slash", onClick: {
+                    DatabaseModel.isChengHuaMode = !DatabaseModel.isChengHuaMode
+                }, toggle: DatabaseModel.isChengHuaMode),
+            ],
+            "Search Engine": [
+                SettingButton(label: "Google", icon: "g.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .google)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.google),
+                SettingButton(label: "Bing", icon: "b.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .bing)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.bing),
+                SettingButton(label: "YouTube", icon: "y.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .youtube)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.youtube),
+                SettingButton(label: "Reddit", icon: "r.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .reddit)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.reddit),
+                SettingButton(label: "DuckDuckGo", icon: "d.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .duckduckgo)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.duckduckgo),
+                SettingButton(label: "AI", icon: "a.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .ai)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.ai),
+                SettingButton(label: "Yandex", icon: "y.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .yandex)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.yandex),
+                SettingButton(label: "Baidu", icon: "b.circle", onClick: {
+                    URLValidator.changeBaseURL(choice: .baidu)
+                }, toggle: URLValidator.selectedEngine == SearchEngineChoice.baidu)
+            ],
+        ];
+        
         var TabsModel: [String: [SettingButton]] = [
             "Tabs": DatabaseModel.tabs.map {
                 tabObj in
@@ -63,7 +57,7 @@ public class HomeViewTabsModel {
             }
         ]
         
-        for (key, value) in HomeViewTabsModel.StaticTabModels {
+        for (key, value) in StaticTabModels {
             TabsModel[key, default: []].append(contentsOf: value)
         }
         

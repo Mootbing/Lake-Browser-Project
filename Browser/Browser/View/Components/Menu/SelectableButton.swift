@@ -1,12 +1,10 @@
 import SwiftUI
 
 struct SelectableButton: View {
-    var btnObj : SettingButton;
-    @State var selected = false;
+    @State var btnObj : SettingButton;
     
     init(btnObj: SettingButton) {
-        self.btnObj = btnObj
-        self.selected = btnObj.toggle ?? false
+        _btnObj = State(initialValue: btnObj)
     }
     
     var body: some View {
@@ -16,7 +14,7 @@ struct SelectableButton: View {
                 .font(.system(size: 12))
         }
             .frame(width: 32, height: 32) // Adjust to your Figma design
-            .background(Color.white.opacity(selected ? 0.25 : 0.05))
+            .background(Color.white.opacity(btnObj.toggle ?? false ? 0.25 : 0.05))
             .clipShape(Circle())
             .padding(.top, 10)
         
