@@ -25,7 +25,8 @@ struct SelectableButton: View {
             .padding(.top, 3)
             .kerning(1)
             .font(.system(size: 12))
-            .padding(.top, -30)
+            .padding(.top, -35)
+            .padding(.bottom, -10)
     }
 }
 

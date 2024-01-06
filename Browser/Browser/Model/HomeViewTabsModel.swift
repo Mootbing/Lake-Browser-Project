@@ -13,6 +13,83 @@ public class HomeViewTabsModel {
         
         //static but refreshing
         let StaticTabModels: [String: [SettingButton]] = [
+            "For You": [
+                SettingButton(label: "Google", icon: "g.circle", onClick: {
+                    // Send URL to Google
+                }), //toggle: GlassMorphicSearchBar.DefaultURL == currentURL
+                SettingButton(label: "YouTube", icon: "y.circle", onClick: {
+                    // Send URL to YouTube
+                }),
+                SettingButton(label: "Facebook", icon: "f.circle", onClick: {
+                    // Send URL to Facebook
+                }),
+                SettingButton(label: "Amazon", icon: "a.circle", onClick: {
+                    // Send URL to Amazon
+                }),
+                SettingButton(label: "Twitter", icon: "t.circle", onClick: {
+                    // Send URL to Twitter
+                }),
+                SettingButton(label: "Instagram", icon: "i.circle", onClick: {
+                    // Send URL to Instagram
+                }),
+                SettingButton(label: "LinkedIn", icon: "l.circle", onClick: {
+                    // Send URL to LinkedIn
+                }),
+                SettingButton(label: "Netflix", icon: "n.circle", onClick: {
+                    // Send URL to Netflix
+                }),
+                SettingButton(label: "Reddit", icon: "r.circle", onClick: {
+                    // Send URL to Reddit
+                }),
+                SettingButton(label: "Wikipedia", icon: "w.circle", onClick: {
+                    // Send URL to Wikipedia
+                }),
+                SettingButton(label: "Microsoft", icon: "m.circle", onClick: {
+                    // Send URL to Microsoft
+                }),
+                SettingButton(label: "Apple", icon: "a.circle", onClick: {
+                    // Send URL to Apple
+                }),
+                SettingButton(label: "Yahoo", icon: "y.circle", onClick: {
+                    // Send URL to Yahoo
+                }),
+                SettingButton(label: "Netflix", icon: "n.circle", onClick: {
+                    // Send URL to Netflix
+                }),
+                SettingButton(label: "Pinterest", icon: "p.circle", onClick: {
+                    // Send URL to Pinterest
+                }),
+                SettingButton(label: "Etsy", icon: "e.circle", onClick: {
+                    // Send URL to Etsy
+                }),
+                SettingButton(label: "CNN", icon: "c.circle", onClick: {
+                    // Send URL to CNN
+                }),
+                SettingButton(label: "BBC", icon: "b.circle", onClick: {
+                    // Send URL to BBC
+                }),
+                SettingButton(label: "Adobe", icon: "a.circle", onClick: {
+                    // Send URL to Adobe
+                }),
+                SettingButton(label: "GitHub", icon: "g.circle", onClick: {
+                    // Send URL to GitHub
+                }),
+                SettingButton(label: "Stack Overflow", icon: "s.circle", onClick: {
+                    // Send URL to Stack Overflow
+                }),
+                SettingButton(label: "CNN", icon: "c.circle", onClick: {
+                    // Send URL to CNN
+                }),
+                SettingButton(label: "BBC", icon: "b.circle", onClick: {
+                    // Send URL to BBC
+                }),
+                SettingButton(label: "Adobe", icon: "a.circle", onClick: {
+                    // Send URL to Adobe
+                }),
+                SettingButton(label: "GitHub", icon: "g.circle", onClick: {
+                    // Send URL to GitHub
+                }),
+            ],
             "Settings": [
                 SettingButton(label: "Chengcognito", icon: "person.slash", onClick: {
                     DatabaseModel.isChengHuaMode = !DatabaseModel.isChengHuaMode
@@ -47,13 +124,25 @@ public class HomeViewTabsModel {
         ];
         
         var TabsModel: [String: [SettingButton]] = [
-            "Tabs": DatabaseModel.tabs.map {
+            "Tabs": [SettingButton(label: "Add", icon: "plus", onClick: {
+                
+            }),] + DatabaseModel.tabs.map {
                 tabObj in
-                SettingButton(label: "tab", icon: "square.3.layers.3d.down.right")
+                SettingButton(label: "Tab", icon: "square.3.layers.3d.down.right")
             },
-            "History": DatabaseModel.history.map {
+            "History": [SettingButton(label: "Clear", icon: "trash", onClick: {
+                
+            }),SettingButton(label: "Remove", icon: "xmark", onClick: {
+                
+            }),] + DatabaseModel.history.map {
                 tabObj in
-                SettingButton(label: "history", icon: "network")
+                SettingButton(label: "History", icon: "network")
+            },
+            "Bookmarks": [SettingButton(label: "Add", icon: "plus", onClick: {
+                
+            }),] + DatabaseModel.bookmarks.map {
+                tabObj in
+                SettingButton(label: "Bookmark", icon: "bookmark")
             }
         ]
         
