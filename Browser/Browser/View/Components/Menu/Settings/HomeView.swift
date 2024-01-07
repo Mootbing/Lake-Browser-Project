@@ -9,6 +9,11 @@ struct HomeView: View {
         _SearchBar = State(initialValue: SearchBar)
         self.HomeViewTabs = HomeViewTabs
     }
+    
+    init () {
+        _SearchBar = State(initialValue: GlassMorphicSearchBar())
+        self.HomeViewTabs = ["": [SettingButton(label: "N/A", icon: "cross")]]
+    }
 
     var body: some View {
         NavigationView {

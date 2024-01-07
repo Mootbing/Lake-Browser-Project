@@ -161,7 +161,7 @@ struct GlassMorphicSearchBar: View {
                                 onURLChange(self.URL)
                                 showToolsets = false
                             }) {
-                                Image(systemName: "xmark")
+                                Image(systemName: "house")
                                     .foregroundColor(.white)
                                     .font(.system(size: 12))
                             }

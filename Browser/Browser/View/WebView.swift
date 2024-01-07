@@ -104,7 +104,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
                     
                     if !DatabaseModel.isChengHuaMode
                     {
-                        DatabaseModel.history.append(DatabaseModel.makeURLObject(URL: URL))
+                        DatabaseModel.history.append(DatabaseModel.makeURLObject(URL: URL, Title: String(URL.absoluteString.prefix(10))))
                     }
                 }
             }

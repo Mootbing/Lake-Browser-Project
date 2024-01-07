@@ -12,6 +12,23 @@ struct WebsiteCreator: View
     
     @State var SearchBar: GlassMorphicSearchBar = GlassMorphicSearchBar()
     
+    @State var homeView = HomeView();
+    
+    func closeDrawerCallback () {
+        showHomePage = false
+    }
+    
+    func refreshViewCallback () {        
+        print("homeview revamp! ")
+        homeView = HomeView(
+            SearchBar: SearchBar,
+            HomeViewTabs: HomeViewTabsModel.MakeTabsModel(viewModel: viewModel,
+              refreshViewCallback: refreshViewCallback,
+              closeDrawerCallback: closeDrawerCallback
+           )
+        )
+    }
+    
     var group = Group
     {
         Spacer()
@@ -30,19 +47,16 @@ struct WebsiteCreator: View
                     .padding(.bottom, 0) // Positioning 100px from the bottom
                 
                 .popover(isPresented: $showHomePage) {
-                    HomeView(
-                        SearchBar: SearchBar,
-                        HomeViewTabs: HomeViewTabsModel.MakeTabsModel(viewModel: viewModel, closeDrawerCallback: {
-                                showHomePage = false
-                            }
-                         )
-                    )
+                    homeView
                         .cornerRadius(25)
                         .ignoresSafeArea()
                 }
             }
         }
         .onAppear{
+            
+            refreshViewCallback()
+            
             self.SearchBar = GlassMorphicSearchBar(
                 URLSub: self.viewModel.showWebTitle,
                 onSwipe: {dir in
@@ -50,7 +64,7 @@ struct WebsiteCreator: View
                     switch dir {
                         case .up:
                             showHomePage = true
-//                            self.SearchBar.swipeDir = .none;
+                            refreshViewCallback()
                         case .down:
                             if showHomePage {
                                 showHomePage = false
@@ -83,7 +97,6 @@ struct WebsiteCreator: View
                 },
                 showToolsets: false
             )
-            
 //            self.viewModel.valuePublisher.subscribe(on: )
         }
     }

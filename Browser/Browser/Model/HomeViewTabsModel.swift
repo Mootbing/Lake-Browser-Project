@@ -9,7 +9,11 @@ import Foundation
 
 public class HomeViewTabsModel {
     
-    public static func MakeTabsModel(viewModel: ViewModel, closeDrawerCallback: @escaping () -> Void) -> [String: [SettingButton]] {
+    public static func MakeTabsModel() -> [String: [SettingButton]] {
+        return ["": [SettingButton(label: "N/A", icon: "cross")]]
+    }
+    
+    public static func MakeTabsModel(viewModel: ViewModel, refreshViewCallback: @escaping () -> Void, closeDrawerCallback: @escaping () -> Void) -> [String: [SettingButton]] {
         
         //static but refreshing
         let StaticTabModels: [String: [SettingButton]] = [
@@ -99,56 +103,75 @@ public class HomeViewTabsModel {
             "Settings": [
                 SettingButton(label: "Chengcognito", icon: "person.slash", onClick: {
                     DatabaseModel.isChengHuaMode = !DatabaseModel.isChengHuaMode
+                    refreshViewCallback()
                 }, toggle: DatabaseModel.isChengHuaMode),
             ],
             "Search Engine": [
                 SettingButton(label: "Google", icon: "g.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .google)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.google),
                 SettingButton(label: "Bing", icon: "b.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .bing)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.bing),
                 SettingButton(label: "YouTube", icon: "y.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .youtube)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.youtube),
                 SettingButton(label: "Reddit", icon: "r.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .reddit)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.reddit),
                 SettingButton(label: "DuckDuckGo", icon: "d.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .duckduckgo)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.duckduckgo),
                 SettingButton(label: "AI", icon: "a.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .ai)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.ai),
                 SettingButton(label: "Yandex", icon: "y.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .yandex)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.yandex),
                 SettingButton(label: "Baidu", icon: "b.circle", onClick: {
                     URLValidator.changeBaseURL(choice: .baidu)
+                    refreshViewCallback()
                 }, toggle: URLValidator.selectedEngine == SearchEngineChoice.baidu)
             ],
         ];
         
         var TabsModel: [String: [SettingButton]] = [
             "Tabs": [SettingButton(label: "Add", icon: "plus", onClick: {
-                
+//                DatabaseModel.addToBookmarks(tab: DatabaseModel.makeURLObject(URL: URL(string: GlassMorphicSearchBar.DefaultURL)!))
+//                refreshViewCallback()
             }),] + DatabaseModel.tabs.map {
                 tabObj in
                 SettingButton(label: "Tab", icon: "square.3.layers.3d.down.right")
             },
-            "History": [SettingButton(label: "Clear", icon: "trash", onClick: {
-                
+            "History": (!DatabaseModel.history.isEmpty ? [SettingButton(label: "Clear", icon: "trash", onClick: {
+                DatabaseModel.clearHistory()
+                refreshViewCallback()
             }),SettingButton(label: "Remove", icon: "xmark", onClick: {
-                
-            }),] + DatabaseModel.history.map {
+                DatabaseModel.popHistory()
+                refreshViewCallback()
+            }),] : []) + DatabaseModel.history.map {
                 tabObj in
-                SettingButton(label: "History", icon: "network")
+                SettingButton(label: tabObj.Title, icon: "network", onClick: {
+                    viewModel.valuePublisher.send(tabObj.URL.absoluteString)
+                    closeDrawerCallback()
+                })
             },
             "Bookmarks": [SettingButton(label: "Add", icon: "plus", onClick: {
-                
+                DatabaseModel.addToBookmarks(tab: DatabaseModel.makeURLObject(URL: URL(string: GlassMorphicSearchBar.DefaultURL)!, Title: String(GlassMorphicSearchBar.DefaultURL.prefix(10))))
+                refreshViewCallback()
             }),] + DatabaseModel.bookmarks.map {
                 tabObj in
-                SettingButton(label: "Bookmark", icon: "bookmark")
+                SettingButton(label: tabObj.Title, icon: "bookmark", onClick: {
+                    viewModel.valuePublisher.send(tabObj.URL.absoluteString)
+                    closeDrawerCallback()
+                })
             }
         ]
         
