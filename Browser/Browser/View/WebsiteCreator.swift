@@ -58,7 +58,7 @@ struct WebsiteCreator: View
             refreshViewCallback()
             
             self.SearchBar = GlassMorphicSearchBar(
-                URLSub: self.viewModel.showWebTitle,
+                URLSub: self.viewModel.urlActual,
                 onSwipe: {dir in
                 
                     switch dir {
