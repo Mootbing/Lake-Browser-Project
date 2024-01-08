@@ -109,27 +109,22 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
                 }
             }
         
-//            webView.evaluateJavaScript("document.location.href")
-//            { (response, error) in
-//                
-//                if let error = error
-//                {
-//                    print("Error getting url")
-//                    print(error.localizedDescription)
-//                }
-//                
-//                guard let title = response as? String else
-//                {
-//                    return
-//                }
-//                
-//                self.parent.viewModel.showWebTitle.send(title)
-//                
-//                if !DatabaseModel.isChengHuaMode
-//                {
-//                    DatabaseModel.history.append(DatabaseModel.makeURLObject(URL: URL(string: title)!))
-//                }
-//            }
+            webView.evaluateJavaScript("document.title")
+            { (response, error) in
+                
+                if let error = error
+                {
+                    print("Error getting title")
+                    print(error.localizedDescription)
+                }
+                
+                guard let title = response as? String else
+                {
+                    return
+                }
+                
+                self.parent.viewModel.titleActual.send(title)
+            }
             
             /* An observer that observes 'viewModel.valuePublisher' to get value from TextField and
              pass that value to web app by calling JavaScript function */

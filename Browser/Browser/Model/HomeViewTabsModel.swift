@@ -143,13 +143,6 @@ public class HomeViewTabsModel {
         ];
         
         var TabsModel: [String: [SettingButton]] = [
-            "Tabs": [SettingButton(label: "Add", icon: "plus", onClick: {
-//                DatabaseModel.addToBookmarks(tab: DatabaseModel.makeURLObject(URL: URL(string: GlassMorphicSearchBar.DefaultURL)!))
-//                refreshViewCallback()
-            }),] + DatabaseModel.tabs.map {
-                tabObj in
-                SettingButton(label: "Tab", icon: "square.3.layers.3d.down.right")
-            },
             "History": (!DatabaseModel.history.isEmpty ? [SettingButton(label: "Clear", icon: "trash", onClick: {
                 DatabaseModel.clearHistory()
                 refreshViewCallback()
@@ -182,3 +175,11 @@ public class HomeViewTabsModel {
         return TabsModel
     }
 }
+
+//"Tabs": [SettingButton(label: "Add", icon: "plus", onClick: {
+////                DatabaseModel.addToBookmarks(tab: DatabaseModel.makeURLObject(URL: URL(string: GlassMorphicSearchBar.DefaultURL)!))
+////                refreshViewCallback()
+//}),] + DatabaseModel.tabs.map {
+//    tabObj in
+//    SettingButton(label: "Tab", icon: "square.3.layers.3d.down.right")
+//},
