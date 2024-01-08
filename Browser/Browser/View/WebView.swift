@@ -100,7 +100,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
             if !DatabaseModel.isChengHuaMode
             {
                 if let URL = webView.url{
-                    self.parent.viewModel.showWebTitle.send(URL.absoluteString)
+                    self.parent.viewModel.urlActual.send(URL.absoluteString)
                     
                     if !DatabaseModel.isChengHuaMode
                     {
@@ -216,7 +216,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate
                         webView.reload()
                 }
                 
-                self.parent.viewModel.showWebTitle.send(webView.url?.absoluteString ?? "")
+                self.parent.viewModel.urlActual.send(webView.url?.absoluteString ?? "")
             })
             
             _ = createTimer()

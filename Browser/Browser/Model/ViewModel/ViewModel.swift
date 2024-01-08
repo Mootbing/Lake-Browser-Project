@@ -7,9 +7,10 @@ import Combine
 public class ViewModel: ObservableObject
 {
     var webViewNavigationPublisher = PassthroughSubject<WebViewNavigation, Never>()
-    var showWebTitle = PassthroughSubject<String, Never>()
+    var urlActual = PassthroughSubject<String, Never>()
     var showLoader = PassthroughSubject<Bool, Never>()
     var valuePublisher = PassthroughSubject<String, Never>()
+    var titleActual = PassthroughSubject<String, Never> ()
 }
 
 // For identifiying WebView's forward and backward navigation
