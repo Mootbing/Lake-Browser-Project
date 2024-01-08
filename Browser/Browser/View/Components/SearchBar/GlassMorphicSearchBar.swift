@@ -109,6 +109,11 @@ struct GlassMorphicSearchBar: View {
                         .foregroundColor(.white)
                         .font(.system(size: 25))
                 }
+                else if swipeDir == .down {
+                    Image(systemName: "arrow.clockwise")
+                        .foregroundColor(.white)
+                        .font(.system(size: 25))
+                }
                 else {
                     HStack {
                         // Placeholder/Text field
@@ -185,7 +190,7 @@ struct GlassMorphicSearchBar: View {
                 }
             }
         }
-        .cornerRadius(swipeDir == .left || swipeDir == .right ? 100 : 20)
+        .cornerRadius(swipeDir == .left || swipeDir == .right || swipeDir == .down ? 25 : 20)
             .gesture(
                 DragGesture()
                     .onChanged { gesture in
