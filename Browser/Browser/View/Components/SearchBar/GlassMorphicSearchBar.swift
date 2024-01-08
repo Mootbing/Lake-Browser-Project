@@ -220,7 +220,7 @@ struct GlassMorphicSearchBar: View {
 //                                print ("down")
                             swipeDir = .down;
                         }
-                        else if translationH < -swipeThreshold {
+                        else if translationH < -swipeThresholdH {
 //                                print ("up")
                             swipeDir = .up;
                         }

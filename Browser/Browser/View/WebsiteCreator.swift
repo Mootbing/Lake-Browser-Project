@@ -23,7 +23,7 @@ struct WebsiteCreator: View
         homeView = HomeView(
             SearchBar: SearchBar,
             HomeViewTabs: HomeViewTabsModel.MakeTabsModel(viewModel: viewModel,
-              refreshViewCallback: refreshViewCallback,
+              refreshViewCallback: closeDrawerCallback,
               closeDrawerCallback: closeDrawerCallback
            )
         )
