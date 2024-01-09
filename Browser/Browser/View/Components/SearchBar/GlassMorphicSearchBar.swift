@@ -22,7 +22,7 @@ struct GlassMorphicSearchBar: View {
     
     @State public var swipeDir: SwipeDirection = .none;
     @State private var isEditing: Bool = false;
-    @State private var isFocused: Bool = false
+    @State private var isFocused: Bool = true
 
     // Variable to store the callback function
     private var onURLChange: (String) -> Void = {newURL in}
