@@ -166,6 +166,7 @@ struct GlassMorphicSearchBar: View {
                                 setNewURLWithUIUpdate(newURL: URLValidator.baseURLSearch)
                                 onURLChange(self.URL)
                                 showToolsets = false
+                                isFocused = true
                             }) {
                                 Image(systemName: "house")
                                     .foregroundColor(.white)
