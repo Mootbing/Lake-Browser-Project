@@ -22,6 +22,7 @@ struct GlassMorphicSearchBar: View {
     
     @State public var swipeDir: SwipeDirection = .none;
     @State private var isEditing: Bool = false;
+    @State private var isFocused: Bool = false
 
     // Variable to store the callback function
     private var onURLChange: (String) -> Void = {newURL in}
@@ -68,7 +69,7 @@ struct GlassMorphicSearchBar: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color.black.opacity(0.25))
                 .background(
-                    VisualEffectView(effect: UIBlurEffect(style: .light))
+                    isEditing || swipeDir == .left || swipeDir == .right || swipeDir == .down || showToolsets || isFocused ? VisualEffectView(effect: UIBlurEffect(style: .light)) : VisualEffectView()
                 )
                 .background(Color.white.opacity(0.05))
                 .frame(height: 60) // Adjust to your Figma design height
@@ -245,6 +246,9 @@ struct GlassMorphicSearchBar: View {
             )
             .onChange(of: URL, perform: { newURL in
                 GlassMorphicSearchBar.DefaultURL = newURL
+            })
+            .onTapGesture(perform: {
+                isFocused = !isFocused
             })
     }
 }

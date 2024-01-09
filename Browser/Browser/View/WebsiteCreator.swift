@@ -44,7 +44,7 @@ struct WebsiteCreator: View
             if self.SearchBar.URL != "" {
                 self.SearchBar
                     .padding(.leading, 20).padding(.trailing, 20)
-                    .padding(.bottom, 0) // Positioning 100px from the bottom
+                    .padding(.bottom, 20) // Positioning 100px from the bottom
                 
                 .popover(isPresented: $showHomePage) {
                     homeView
